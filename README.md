@@ -1,5 +1,12 @@
 # Using gb2seq to work with unannotated viral genomes based on a GenBank reference
 
+```
+Terry Jones
+Institute of Virology
+Charité Universitätsmedizin
+Berlin
+```
+
 ## The problem
 
 You have unannotated genomes and need to compare them to an annotated
@@ -13,11 +20,12 @@ processing consensus sequences from 10 hospital mpox samples (with over 200
 genes).  E.g., examine a particular gene or region for NT or AA changes,
 indels, genome position, etc.
 
-This is challenging because to work with genome features you need to align
-against something that is annotated before you can even begin.
+This can be awkward because to work with genome features you need to align
+against something that is annotated before you can begin.
 
-Making a multiple sequence alignment may be risky. Better to examine an
-optimal alignment of each unannotated genome with the reference.
+Making a multiple sequence alignment can be sub-optimal (slow, poor
+alignment, how to parallelize?). Better to examine a pairwise alignment of
+each unannotated genome with the reference.
 
 You can work with a GUI tool, e.g., Geneious, but that approach is manual,
 slow, can be error prone, and definitely does not scale.
@@ -218,4 +226,15 @@ $ annotate-genome.py --aligner edlib --reference mpox.gb --genome mpox-genome.fa
 
 ## Roll your own
 
-It's easy to write your own scripts. E.g., `get-sar2-spike.py`
+It's easy to write your own scripts. E.g., `get-sars-2-spike-aa.py`
+
+```sh
+$ ./get-sars-2-spike-aa.py < sars-2-genome.fasta
+```
+
+Or check for specific genome/gene changes:
+
+```sh
+$ ./N501Y-checker.py < alpha-genome.fasta
+N501Y substitution found in EPI_ISL_601443 hCoV-19/England/MILK-9E05B3/2020
+```

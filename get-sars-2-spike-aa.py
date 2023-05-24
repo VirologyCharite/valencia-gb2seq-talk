@@ -17,6 +17,6 @@ args = parser.parse_args()
 features = Features(sars2=True)
 
 for record in parseFASTACommandLineOptions(args):
-    alignment = Gb2Alignment(record, features, aligner="edlib")
+    alignment = Gb2Alignment(record, features)
     genomeAa, genomeNt = alignment.aaSequences("spike")
     print(genomeAa.toString("fasta"), end="")
