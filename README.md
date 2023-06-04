@@ -71,7 +71,7 @@ Or examine a specific feature:
 $ describe-feature.py --name spike --sars2
 ```
 
-Also examine an unannotated genome:
+Examine an unannotated genome as well:
 
 ```sh
 $ describe-feature.py --name spike --sars2 --genome sars-2-genome.fasta

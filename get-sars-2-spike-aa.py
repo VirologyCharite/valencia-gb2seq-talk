@@ -9,7 +9,7 @@ from gb2seq.features import Features
 
 parser = argparse.ArgumentParser(
     description=("Read SARS-2 FASTA from standard input. "
-                 "Write the spike gene in amino acids as FASTA."))
+                 "Write the spike gene amino acids as FASTA."))
 addAlignerOption(parser)
 addFASTACommandLineOptions(parser)
 args = parser.parse_args()
@@ -18,5 +18,5 @@ features = Features(sars2=True)
 
 for record in parseFASTACommandLineOptions(args):
     alignment = Gb2Alignment(record, features)
-    genomeAa, genomeNt = alignment.aaSequences("spike")
+    referenceAa, genomeAa = alignment.aaSequences("spike")
     print(genomeAa.toString("fasta"), end="")
